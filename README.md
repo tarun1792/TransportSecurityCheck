@@ -15,6 +15,8 @@ ATS requires that all HTTP connections made with the URL Loading System—typica
 ## Usages
 
 python TransportSecurityCheck.py [Path of target IPA]
+OR
+python3 TransportSecurityCheck.py [Path of target IPA]
 
 ## Example Result
 
