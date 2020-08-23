@@ -20,7 +20,9 @@ NSAllowArbitraryLoad :  True
 NSExceptionDomains : Not Specified
 
 ------------------CONCLUSION---------------------
+
 CONFIGURATION: FAILED (Transport security is Disabled for all domains)
+
 Spend time verifying:
     • The ciphers used for the app’s backend connections (and that they’re strong)
     • The protocols used to send and retrieve data (and that they’re secure)
