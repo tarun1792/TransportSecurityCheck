@@ -27,6 +27,7 @@ python3 TransportSecurityCheck.py [Path of target IPA]
     NSAllowArbitraryLoad :  True
     ===============================================
     NSExceptionDomains : Not Specified
+    
     ------------------CONCLUSION---------------------
     CONFIGURATION: FAILED (Transport security is Disabled for all domains)
     Spend time verifying:
