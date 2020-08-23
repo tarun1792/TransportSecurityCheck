@@ -13,10 +13,10 @@ ATS requires that all HTTP connections made with the URL Loading System—typica
   ATS restricts the application to start communication with server in such encounters.
 
 ## Usages
-```console
-    python TransportSecurityCheck.py [Path of target IPA]
-    OR
-    python3 TransportSecurityCheck.py [Path of target IPA]
+```bash
+python TransportSecurityCheck.py [Path of target IPA]
+                        OR
+python3 TransportSecurityCheck.py [Path of target IPA]
 ```
 
 ## Example Result
