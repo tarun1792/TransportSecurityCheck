@@ -14,9 +14,13 @@ ATS requires that all HTTP connections made with the URL Loading System—typica
 
 ## Usages
 ```bash
-python TransportSecurityCheck.py [Path of target IPA]
-                        OR
-python3 TransportSecurityCheck.py [Path of target IPA]
+python TransportSecurityCheck.py [-option] [IPA_Path]
+                OR
+python3 TransportSecurityCheck.py [-option] [IPA_Path]
+
+Options:
+-ipa : Load IPA from the path.
+-plist : Load plist.
 ```
 
 ## Example Result

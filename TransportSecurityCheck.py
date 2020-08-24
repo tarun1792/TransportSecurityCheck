@@ -8,6 +8,10 @@ class IpaAnalyzer:
     def __init__(self,ipaName):
         self.ipaName = ipaName
         self.extractInfo()
+        
+    def __init__(self,plistFilePath):
+        plist = self.loadPlist(plistFilePath)
+        self.analyzePlist(plist)
 
     def prRed(self,skk):
         print("\033[91m{}\033[00m" .format(skk))
@@ -17,14 +21,27 @@ class IpaAnalyzer:
 
     #unzip the Ipa file
     def extractInfo(self):
-            dictionary = self.getPlistFile()
+        dictionary = self.getPlistFile()
+        analyzePlist(dictionary)
 
-            transportSecurity = dictionary.get('NSAppTransportSecurity')
+   # Analyze Info.plist
+    def analyzePlist(self,dictionary):
+        transportSecurity = dictionary.get('NSAppTransportSecurity')
+        
+        if transportSecurity is not None:
+            self.checkConfiguration(transportSecurity)
+        else:
+            print('CONFIGURATION: PASSED (By Default the Transport security is Turned on)')
             
-            if transportSecurity is not None:
-                self.checkConfiguration(transportSecurity)
-            else:
-                print('CONFIGURATION: PASSED (By Default the Transport security is Turned on)')
+    # Load Plist
+    def loadPlist(self,plistFilePath):
+        with open(plistFilePath,'rb') as plist:
+            #Opening plist file
+            plistDic = plistlib.load(plist)
+            #Closing the plist file'
+            plist.close()
+            #return plist dictionary
+            return plistDic
 
     # get plist file from the ipa
     def getPlistFile(self):
@@ -200,14 +217,23 @@ class IpaAnalyzer:
     
 
 if len(sys.argv) > 1:
-    path = sys.argv[1]
-    IPA = path.split("/")[-1]
-    ipa = IpaAnalyzer(IPA)
+    option = sys.argv[1]
+    if option == '-ipa':
+        path = sys.argv[2]
+        IPA = path.split("/")[-1]
+        ipa = IpaAnalyzer(ipaName=IPA)
+    elif option == '-plist':
+        path = sys.argv[2]
+        plist = IpaAnalyzer(plistFilePath=path)
 
 else:
     print("""
 ===================USAGES==============================
-python TransportSecurityCheck.py [IPA_Path]
+python TransportSecurityCheck.py [-option] [IPA_Path]
                 OR
-python3 TransportSecurityCheck.py [IPA_Path] 
+python3 TransportSecurityCheck.py [-option] [IPA_Path]
+
+Options:
+-ipa : Load IPA from the path.
+-plist : Load plist.
     """)
